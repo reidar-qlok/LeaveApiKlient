@@ -1,0 +1,23 @@
+﻿@using LeaveApiClient.Models
+@model List<Employee>
+<h1>Employees</h1>
+@if(Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        @foreach(var employee in Model)
+        {
+            <tr>
+                <td>@employee.EmployeeName</td>
+                <td>@employee.Email</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No employees in the database</p>
+}
