@@ -17,6 +17,8 @@
                 <td>@employee.Email</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-primary">Details</a>
+                    <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

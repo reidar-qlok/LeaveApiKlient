@@ -47,12 +47,18 @@ namespace LeaveApiClient.Services
         {
             var json = JsonConvert.SerializeObject(employee);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
-            
+
             var response = await _client.PutAsync($"employees/{id}", data);
             response.EnsureSuccessStatusCode();
         }
+        // Delet an employee
+        public async Task DeleteEmployeeAsync(int id)
+        {
+            var response = await _client.DeleteAsync($"employees/{id}");
+            response.EnsureSuccessStatusCode();
+        }
 
-
+        // Returns an employee by id
         public async Task<Employee> GetEmployeeByIdAsync(int id)
         {
             var response = await _client.GetAsync($"employees/{id}");

@@ -50,11 +50,33 @@ namespace LeaveApiClient.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Employee employee)
         {
-
-            await _apiService.UpdateEmployeeAsync(id, employee);
-            return RedirectToAction(nameof(Index));
-
+            if (ModelState.IsValid)
+            {
+                await _apiService.UpdateEmployeeAsync(id, employee);
+                return RedirectToAction(nameof(Index));
+            }
             return View(employee);
+        }
+        // Get details for employees
+        public async Task<IActionResult> Details(int id)
+        {
+            var employee = await _apiService.GetEmployeeByIdAsync(id);
+            return View(employee);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var employee = await _apiService.GetEmployeeByIdAsync(id);
+            if (employee == null)
+                return NotFound();
+            return View(employee);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _apiService.DeleteEmployeeAsync(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
