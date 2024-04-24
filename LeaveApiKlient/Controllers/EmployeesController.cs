@@ -38,5 +38,23 @@ namespace LeaveApiClient.Controllers
             }
             return View(employee);
         }
+        // Show a form to get an employee
+        ////// GET: Employees/Edit/5
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var employee = await _apiService.GetEmployeeByIdAsync(id);
+            return View(employee);
+        }
+        ////// Uppdate an employee
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Employee employee)
+        {
+
+            await _apiService.UpdateEmployeeAsync(id, employee);
+            return RedirectToAction(nameof(Index));
+
+            return View(employee);
+        }
     }
 }

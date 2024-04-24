@@ -40,5 +40,31 @@ namespace LeaveApiClient.Services
             var response = await _client.PostAsync("employees", data);
             response.EnsureSuccessStatusCode();
         }
+
+
+        // Update Employees
+        public async Task UpdateEmployeeAsync(int id, Employee employee)
+        {
+            var json = JsonConvert.SerializeObject(employee);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            
+            var response = await _client.PutAsync($"employees/{id}", data);
+            response.EnsureSuccessStatusCode();
+        }
+
+
+        public async Task<Employee> GetEmployeeByIdAsync(int id)
+        {
+            var response = await _client.GetAsync($"employees/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<Employee>();
+            }
+            else
+            {
+                throw new InvalidOperationException($"API failed with statuscode {response.StatusCode}");
+            }
+        }
+
     }
 }
