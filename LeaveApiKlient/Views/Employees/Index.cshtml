@@ -18,7 +18,10 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-primary">Edit</a>
                     <a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-primary">Details</a>
-                    <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger">Delete</a>
+                    @* <a asp-action="Delete" asp-route-id="@employee.EmployeeId" method="post" class="btn btn-danger">Delete</a> *@
+                    <form asp-action="DeleteConfirmed" class="d-inline-block" asp-route-id="@employee.EmployeeId" method="post">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this employee?');">Delete</button>
+                    </form>
                 </td>
             </tr>
         }

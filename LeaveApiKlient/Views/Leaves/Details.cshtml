@@ -1,0 +1,24 @@
+﻿@model LeaveApiClient.Models.Leave
+
+@{
+    ViewData["Title"] = "Leave Details";
+}
+
+<h1>Leave Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Leave ID: @Model.LeaveId</h4>
+        <p class="card-text">Employee ID: @Model.FkEmployeeId</p>
+        <p class="card-text">Start Date: @Model.StartDate.ToString("yyyy-MM-dd")</p>
+        <p class="card-text">End Date: @Model.EndDate.ToString("yyyy-MM-dd")</p>
+        <p class="card-text">Leave Type: @Model.Type</p>
+        <p class="card-text">Status: @Model.Status</p>
+
+        <a asp-action="Edit" asp-route-id="@Model.LeaveId" class="btn btn-primary">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.LeaveId" class="btn btn-danger">Delete</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+

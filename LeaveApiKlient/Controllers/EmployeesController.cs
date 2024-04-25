@@ -64,15 +64,15 @@ namespace LeaveApiClient.Controllers
             return View(employee);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var employee = await _apiService.GetEmployeeByIdAsync(id);
-            if (employee == null)
-                return NotFound();
-            return View(employee);
-        }
-        [HttpPost, ActionName("Delete")]
+        //[HttpGet]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var employee = await _apiService.GetEmployeeByIdAsync(id);
+        //    if (employee == null)
+        //        return NotFound();
+        //    return View(employee);
+        //}
+        [HttpPost, ActionName("DeleteConfirmed")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _apiService.DeleteEmployeeAsync(id);
